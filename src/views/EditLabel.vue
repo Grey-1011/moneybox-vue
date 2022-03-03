@@ -36,6 +36,7 @@ export default class EditLabel extends Vue {
       this.tag = tag;
     } else {
       this.$router.replace('/404');
+      // 这里有bug 当标签删除后,有时会自动跳转404
     }
   }
 
