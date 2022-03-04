@@ -19,7 +19,7 @@ type TagListModel = {
     save: () => void
 }
 
-interface Window {
+interface Store {
     tagList: Tag[];
     createTag: (name: string) => void;
     findTag: (id: string) => Tag | undefined;
