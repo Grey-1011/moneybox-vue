@@ -19,7 +19,7 @@ import {Component} from 'vue-property-decorator';
 import Button from '@/components/Button.vue';
 
 @Component({
-  components:{Button}
+  components: {Button}
 })
 export default class Labels extends Vue {
   //TODO

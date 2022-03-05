@@ -45,18 +45,19 @@ export default class EditLabel extends Vue {
   remove() {
     if (this.tag) {
       //TODO
-      return
+      return;
       // if (store.removeTag(this.tag.id)) {
       //     this.$router.back();
       //   } else {
       //     window.alert('删除失败');
       //   }
-      }
-    }
-    goBack(){
-      this.$router.back();
     }
   }
+
+  goBack() {
+    this.$router.back();
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -6,7 +6,8 @@
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>= 0}"
-      @click="toggle(tag)">{{tag.name}}</li>
+          @click="toggle(tag)">{{ tag.name }}
+      </li>
     </ul>
   </div>
 </template>
@@ -16,17 +17,17 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 
 @Component({
-  computed:{
-    tagList(){
-      // TODO
-      // return this.$store.fetchTags();
-      return [];
+  computed: {
+    tagList() {
+      return this.$store.state.tagList;
     }
   }
 })
 export default class Tags extends Vue {
   selectedTags: string[] = [];
-
+  created(){
+    this.$store.commit('fetchTags')
+  }
   toggle(tag:string){
     const index = this.selectedTags.indexOf(tag);
     if(index >= 0){
@@ -36,12 +37,11 @@ export default class Tags extends Vue {
     }
     this.$emit('update:value',this.selectedTags)
   }
-  create(){
-    const name = window.prompt('请输入标签名')
-    if(!name){return window.alert('标签名不能为空')}
-      // TODO
-      // this.$store.createTag(name)
-      }
+  create() {
+    const name = window.prompt('请输入标签名');
+    if (!name) {return window.alert('标签名不能为空');}
+    this.$store.commit('createTag',name)
+  }
   }
 
 </script>

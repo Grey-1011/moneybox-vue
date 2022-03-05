@@ -28,9 +28,11 @@ import {Component} from 'vue-property-decorator';
 })
 export default class Money extends Vue {
   record: RecordItem = {tags: [], notes: '', type: '-', amount: 0};
-  created(){
-    this.$store.commit('fetchRecords')
+
+  created() {
+    this.$store.commit('fetchRecords');
   }
+
   onUpdateNotes(value: string) {
     this.record.notes = value;
   }
