@@ -25,12 +25,13 @@ import Button from '@/components/Button.vue';
   components: {Button, FormItem},
 })
 export default class EditLabel extends Vue {
-  get tag(){
+  get tag() {
     return this.$store.state.currentTag;
   }
+
   created() {
     const id = this.$route.params.id;
-    this.$store.commit('setCurrentTag',id);
+    this.$store.commit('setCurrentTag', id);
     if (!this.tag) {
       this.$router.replace('404');
     }
