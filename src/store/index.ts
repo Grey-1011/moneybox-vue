@@ -9,7 +9,7 @@ Vue.use(Vuex); // 把 store 绑到 Vue.prototype.$store = store
 const store = new Vuex.Store({
   state: { //  data
     recordList: [] as RecordItem[],
-    tagList:[] as Tag[],
+    tagList: [] as Tag[],
   },
   mutations: {// methods
     fetchRecords(state) {
@@ -28,7 +28,7 @@ const store = new Vuex.Store({
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
     },
-    createTag(state,name:string) {
+    createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
         window.alert('标签名重复了');
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
       }
       const id = createId().toString();
       state.tagList.push({id, name: name});
-      store.commit('saveTags')
+      store.commit('saveTags');
       window.alert('添加成功');
       return 'success';
     },
