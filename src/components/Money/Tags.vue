@@ -13,16 +13,16 @@
 </template>
 
 <script lang="ts">
-// import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import {mixins} from 'vue-class-component';
 import tagHelper from '@/mixins/TagHelper';
 
 @Component
 export default class Tags extends mixins(tagHelper) {
-  get tags(){
+  get tagList() {
     return this.$store.state.tagList;
   }
+
   selectedTags: string[] = [];
 
   created() {
