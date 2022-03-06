@@ -18,6 +18,7 @@ export default class Tabs extends Vue {
   @Prop(String) classPrefix?: string; // ?类型可能是 undefined
   @Prop({required: true, type: Array})
   dataSource!: DataSourceItem;
+  @Prop({type: String, default: '64px'}) height!: string;
 
   liClass(item: DataSourceItem) {
     return {
