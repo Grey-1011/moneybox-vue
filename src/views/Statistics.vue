@@ -2,7 +2,7 @@
   <layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
     <div class="chart-wrapper" ref="chartWrapper">
-      <Chart class="chart" :options="chartOptions" />
+      <Chart class="chart" :options="chartOptions"/>
     </div>
     <ol v-if="groupedList.length > 0">
       <li v-for="(group,index) in groupedList" :key="index">
@@ -69,15 +69,16 @@ export default class Statistics extends Vue {
   get keyValueList() {
     const today = new Date();
     const array = [];
+    console.log(this.groupedList);
     for (let i = 0; i <= 29; i++) {
       // this.recordList = [{date:7.3, value:100}, {date:7.2, value:200}]
       const dateString = day(today)
           .subtract(i, 'day').format('YYYY-MM-DD');
-      const found = _.find(this.recordList, {
-        createdAt: dateString
-      });
+      const found = _.find(this.groupedList, {
+        title: dateString
+      })
       array.push({
-        key: dateString, value: found ? found.amount : 0
+        key: dateString, value: found ? found.total : 0
       });
     }
     array.sort((a, b) => {
