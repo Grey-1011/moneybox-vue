@@ -29,7 +29,7 @@ import {Component} from 'vue-property-decorator';
 import Tabs from '@/components/Tabs.vue';
 import recordTypeList from '@/constans/recordTypeList';
 import dayjs from 'dayjs';
-import day from 'dayjs'
+import day from 'dayjs';
 import _ from 'lodash';
 import clone from '@/lib/clone';
 import Chart from '@/components/Chart.vue';
@@ -104,7 +104,12 @@ export default class Statistics extends Vue {
         type: 'category',
         data: keys,
         axisTick: {alignWithLabel: true},
-        axisLine: {lineStyle: {color: '#666'}}
+        axisLine: {lineStyle: {color: '#666'}},
+        axisLabel: {
+          formatter: function (value: string, index: number) {
+            return value.substr(5)
+          }
+        }
       },
       yAxis: {
         type: 'value',
@@ -114,7 +119,7 @@ export default class Statistics extends Vue {
         symbol: 'circle',
         symbolSize: 12,
         itemStyle: {borderWidth: 1, color: '#666', borderColor: '#666'},
-        data:values,
+        data: values,
         type: 'line'
       }],
       tooltip: {
@@ -151,7 +156,7 @@ export default class Statistics extends Vue {
     }
     result.map(group => {
       group.total = group.items.reduce((sum, item) => {
-        return sum + item.amount
+        return sum + item.amount;
       }, 0);
     });
     return result;
