@@ -1,12 +1,16 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="createTag">新增标签</button>
+      <button @click="createTag">
+        <Icon name="new"/>
+      </button>
     </div>
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>= 0}"
-          @click="toggle(tag)">{{ tag.name }}
+          @click="toggle(tag)">
+        <Icon :name="tag.name" v-if="['衣', '食', '住','行'].includes(tag.name)"/>
+        <span v-text="tag.name" v-else></span>
       </li>
     </ul>
   </div>
@@ -44,31 +48,45 @@ export default class Tags extends mixins(tagHelper) {
 </script>
 
 <style lang="scss" scoped>
+
 .tags {
-  background: white;
-  font-size: 14px;
+  background: #ffffff;
+  //font-size: 14px;
   padding: 16px;
   flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;
+  justify-content: space-between;
 
   > .current {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
 
+
     > li {
-      $bg:#d9d9d9;
+      //display: flex;
+      $bg:#f8f8f8;
       background: $bg;
-      $h: 24px;
+      $h:48px;
       height: $h;
-      line-height: $h;
-      padding: 0 16px;
-      margin-right: 12px;
-      border-radius: 12px;
-      margin-top: 4px;
+      width: 48px;
+      //line-height: $h;
+      padding: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .icon {
+        width: 32px;
+        height: 32px;
+      }
+
       &.selected{
-        background: darken($bg,30%);
+        background: darken(#40b3c8,1%);
         color: white;
       }
     }
@@ -82,7 +100,7 @@ export default class Tags extends mixins(tagHelper) {
       border: none;
       color: #999;
       border-bottom: 1px solid;
-      padding: 0 4px;
+      padding:  0 4px;
     }
   }
 }

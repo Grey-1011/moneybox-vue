@@ -5,17 +5,23 @@
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
       <button @click="inputContent">3</button>
-      <button @click="remove">删除</button>
+      <button @click="inputContent">+</button>
       <button @click="inputContent">4</button>
       <button @click="inputContent">5</button>
       <button @click="inputContent">6</button>
-      <button @click="clear">清空</button>
+      <button @click="inputContent">-</button>
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @click="ok" class="ok">OK</button>
-      <button class="zero" @click="inputContent">0</button>
+      <button @click="equal">=</button>
+      <button @click="ok" class="ok">
+        <Icon name="ok"/>
+      </button>
       <button @click="inputContent">.</button>
+      <button class="zero" @click="inputContent">0</button>
+      <button @click="remove">
+        <Icon name="backspace" />
+      </button>
     </div>
   </div>
 </template>
@@ -45,7 +51,19 @@ export default class NumberPad extends Vue {
     if (this.output.indexOf('.') >= 0 && input === '.') {
       return;
     }
+    if(this.output.indexOf('+') >= 0 || input === '+' ){
+      return this.output += input
+    }
+    if(this.output.indexOf('-') >= 0 || input === '-' ){
+      return this.output += input
+    }
     this.output += input;
+  }
+
+  equal(){
+    this.output = eval(this.output).toString()
+    // eval 仅在 demo 使用
+    // console.log(typeof this.output);
   }
 
   remove() {
@@ -61,6 +79,7 @@ export default class NumberPad extends Vue {
   }
 
   ok() {
+    this.equal()
     this.$emit('update:value', this.output);
     this.$emit('submit', this.output);
     this.output = '0';
@@ -69,64 +88,76 @@ export default class NumberPad extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/assets/style/helper.scss";
+@import "./src/assets/style/helper.scss";
 
 .numberPad {
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
   .output {
+    background: #fafafa;
+    border: 1px solid #e9e9e9;
     text-align: right;
-    font-size: 36px;
-    padding: 9px 16px;
+    font-size: 24px;
+    padding: 4px 16px;
     font-family: Consolas, monospace;
-    @extend %innerShadow;
+    //@extend %innerShadow;
   }
 
   .buttons {
     @extend %clearFix;
 
     > button {
-      background: transparent;
-      border: none;
+      background: #fafafa;
+      border: 1px solid #e9e9e9;
       width: 25%;
-      height: 64px;
+      height: 56px;
       float: left;
 
       &.ok {
-        height: 64*2px;
+        //height: 56*2px;
         float: right;
       }
 
       &.zero {
-        width: 50%;
+        //width: 50%;
       }
 
       $bg: #f2f2f2;
 
       &:nth-child(1) {
-        background: $bg;
+        //background: $bg;
       }
 
       &:nth-child(2), &:nth-child(5) {
-        background: darken($bg, 4%);
+        //background: darken($bg, 4%);
       }
 
       &:nth-child(3), &:nth-child(6), &:nth-child(9) {
-        background: darken($bg, 4%*2);
+        //background: darken($bg, 4%*2);
       }
 
       &:nth-child(4), &:nth-child(7), &:nth-child(10) {
-        background: darken($bg, 4%*3);
+        //background: darken($bg, 4%*3);
       }
 
       &:nth-child(8), &:nth-child(11), &:nth-child(13) {
-        background: darken($bg, 4%*4);
+        //background: darken($bg, 4%*4);
       }
 
       &:nth-child(14) {
-        background: darken($bg, 4%*5);
+        //background: darken($bg, 4%*5);
       }
 
-      &:nth-child(12) {
-        background: darken($bg, 4%*6);
+      &:nth-child(13) {
+        //background: darken($bg, 4%*6);
+        background: #feda46;
+      }
+
+      &:nth-child(15) {
+
       }
     }
   }

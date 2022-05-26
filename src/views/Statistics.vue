@@ -1,7 +1,7 @@
 <template>
   <layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-    <div class="chart-wrapper" ref="chartWrapper">
+    <div class="chart-wrapper" ref="chartWrapper" v-if="groupedList.length > 0">
       <Chart class="chart" :options="chartOptions"/>
     </div>
     <ol v-if="groupedList.length > 0">
@@ -18,7 +18,8 @@
       </li>
     </ol>
     <div v-else class="noResult">
-      目前没有相关记录
+      <Icon name="notes"/>
+      <span>暂时还没有记录，快去记一笔吧~</span>
     </div>
   </layout>
 </template>
@@ -100,12 +101,16 @@ export default class Statistics extends Vue {
       grid: {
         left: 0,
         right: 0,
+        height: 200
       },
       xAxis: {
         type: 'category',
         data: keys,
-        axisTick: {alignWithLabel: true},
-        axisLine: {lineStyle: {color: '#666'}},
+        axisTick: {
+          show: false,
+          alignWithLabel: false
+        },
+        axisLine: {lineStyle: {color: '#000'}},
         axisLabel: {
           formatter: function (value: string, index: number) {
             return value.substr(5);
@@ -114,19 +119,31 @@ export default class Statistics extends Vue {
       },
       yAxis: {
         type: 'value',
-        show: false
+        show: false,
+
+
       },
       series: [{
-        symbol: 'circle',
-        symbolSize: 12,
-        itemStyle: {borderWidth: 1, color: '#666', borderColor: '#666'},
+        colorBy: 'series',
+        symbol: 'emptyCircle',
+        symbolSize: 8,
+        itemStyle: {borderWidth: 1, color: '#feda46', borderColor: '#feda46', },
         data: values,
-        type: 'line'
+        type: 'line',
+        cursor: 'pointer' ,
+
+        labelLine: {
+          show: true,
+          showAbove: true,
+          smooth: true,
+        }
       }],
       tooltip: {
-        show: true, triggerOn: 'click',
+        show: true,
+        triggerOn: 'click',
         position: 'top',
-        formatter: '{c}'
+        formatter: '{b}: {c}',
+        showDelay: 0
       }
     };
   }
@@ -177,6 +194,7 @@ export default class Statistics extends Vue {
 .chart {
   width: 430%;
 
+
   &-wrapper {
     overflow: auto;
 
@@ -186,33 +204,35 @@ export default class Statistics extends Vue {
   }
 }
 
-.echarts {
-  max-width: 100%;
-  height: 400px;
-}
 
 .noResult {
+  margin-top: 200px;
   padding: 16px;
   text-align: center;
-}
 
-::v-deep {
-  .type-tabs-item {
-    background: #c4c4c4;
-
-    &.selected {
-      background: white;
-
-      &::after {
-        display: none;
-      }
-    }
-  }
-
-  .interval-tabs-item {
-    height: 48px;
+  .icon {
+    width: 32px;
+    height: 32px;
   }
 }
+
+// 深继承  CSS 透过 css scope
+//::v-deep {
+//  .type-tabs-item {
+//    background: #c4c4c4;
+//
+//    &.selected {
+//      background: white;
+//
+//      &::after {
+//        display: none;
+//      }
+//    }
+//  }
+//  .interval-tabs-item {
+//    height: 48px;
+//  }
+//}
 
 %item {
   padding: 8px 16px;
