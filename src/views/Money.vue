@@ -64,7 +64,8 @@ export default class Money extends Vue {
 <style lang="scss">
 .notes {
   position: relative;
-  .icon{
+
+  .icon {
     margin-left: 8px;
     position: absolute;
     top: 24px;
@@ -73,7 +74,8 @@ export default class Money extends Vue {
 
 .createdAt {
   position: relative;
-  .icon{
+
+  .icon {
     margin-left: 8px;
     position: absolute;
     top: 12px;

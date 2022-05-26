@@ -6,8 +6,8 @@ $color-highlight: #feda46;
 
 
 // placeholder 选择器占位  相当于 每次将选择器器复制过来,如 Button
-%clearFix{
-  &::after{
+%clearFix {
+  &::after {
     content: '';
     display: block;
     clear: both;

@@ -66,9 +66,9 @@ export default class Tags extends mixins(tagHelper) {
 
     > li {
       //display: flex;
-      $bg:#f8f8f8;
+      $bg: #f8f8f8;
       background: $bg;
-      $h:48px;
+      $h: 48px;
       height: $h;
       width: 48px;
       //line-height: $h;
@@ -85,8 +85,8 @@ export default class Tags extends mixins(tagHelper) {
         height: 32px;
       }
 
-      &.selected{
-        background: darken(#40b3c8,1%);
+      &.selected {
+        background: darken(#40b3c8, 1%);
         color: white;
       }
     }
@@ -100,7 +100,7 @@ export default class Tags extends mixins(tagHelper) {
       border: none;
       color: #999;
       border-bottom: 1px solid;
-      padding:  0 4px;
+      padding: 0 4px;
     }
   }
 }

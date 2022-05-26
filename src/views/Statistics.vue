@@ -127,10 +127,10 @@ export default class Statistics extends Vue {
         colorBy: 'series',
         symbol: 'emptyCircle',
         symbolSize: 8,
-        itemStyle: {borderWidth: 1, color: '#feda46', borderColor: '#feda46', },
+        itemStyle: {borderWidth: 1, color: '#feda46', borderColor: '#feda46',},
         data: values,
         type: 'line',
-        cursor: 'pointer' ,
+        cursor: 'pointer',
 
         labelLine: {
           show: true,

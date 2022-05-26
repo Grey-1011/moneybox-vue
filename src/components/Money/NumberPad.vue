@@ -20,7 +20,7 @@
       <button @click="inputContent">.</button>
       <button class="zero" @click="inputContent">0</button>
       <button @click="remove">
-        <Icon name="backspace" />
+        <Icon name="backspace"/>
       </button>
     </div>
   </div>
@@ -51,17 +51,17 @@ export default class NumberPad extends Vue {
     if (this.output.indexOf('.') >= 0 && input === '.') {
       return;
     }
-    if(this.output.indexOf('+') >= 0 || input === '+' ){
-      return this.output += input
+    if (this.output.indexOf('+') >= 0 || input === '+') {
+      return this.output += input;
     }
-    if(this.output.indexOf('-') >= 0 || input === '-' ){
-      return this.output += input
+    if (this.output.indexOf('-') >= 0 || input === '-') {
+      return this.output += input;
     }
     this.output += input;
   }
 
-  equal(){
-    this.output = eval(this.output).toString()
+  equal() {
+    this.output = eval(this.output).toString();
     // eval 仅在 demo 使用
     // console.log(typeof this.output);
   }
@@ -79,7 +79,7 @@ export default class NumberPad extends Vue {
   }
 
   ok() {
-    this.equal()
+    this.equal();
     this.$emit('update:value', this.output);
     this.$emit('submit', this.output);
     this.output = '0';
