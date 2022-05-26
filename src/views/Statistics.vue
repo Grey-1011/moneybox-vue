@@ -1,8 +1,8 @@
 <template>
   <layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-    <div class="chart-wrapper" ref="chartWrapper" >
-      <Chart class="chart" :options="chartOptions" />
+    <div class="chart-wrapper" ref="chartWrapper">
+      <Chart class="chart" :options="chartOptions"/>
     </div>
     <ol v-if="groupedList.length > 0">
       <li v-for="(group,index) in groupedList" :key="index">

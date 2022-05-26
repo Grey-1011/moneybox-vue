@@ -13,16 +13,16 @@ export class TagHelper extends Vue {
                 cancelButtonText: '取消',
                 inputErrorMessage: '标签名不能为空',
                 inputValidator: v => !!v,
-                beforeClose: (action, instance,done) => {
+                beforeClose: (action, instance, done) => {
                     if (action === 'confirm') {
                         if (instance.inputValue) {
-                            const name=instance.inputValue
-                            this.$store.commit('createTag',name)
+                            const name = instance.inputValue;
+                            this.$store.commit('createTag', name);
                             // resolve()
-                            done()
+                            done();
                         }
-                    }else {
-                        done()
+                    } else {
+                        done();
                     }
                 },
             }).catch(() => {
