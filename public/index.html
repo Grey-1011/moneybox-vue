@@ -13,6 +13,13 @@
       <meta name="x5-page-mode" content="app"/>
       <meta name="360-fullscreen" content="true"/>
       <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+      <style>
+          @media screen and (max-width: 750px) {
+              .el-message-box {
+                  width: 80% !important;
+              }
+          }
+      </style>
       <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>

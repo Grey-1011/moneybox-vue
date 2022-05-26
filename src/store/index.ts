@@ -70,7 +70,7 @@ const store = new Vuex.Store({
                 store.commit('createTag', '衣');
                 store.commit('createTag', '食');
                 store.commit('createTag', '住');
-                store.commit('createTag', '行');
+                store.commit('createTag', '行F');
             }
         },
         createTag(state, name: string) {

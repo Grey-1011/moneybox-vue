@@ -1,8 +1,8 @@
 <template>
   <layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-    <div class="chart-wrapper" ref="chartWrapper" v-if="groupedList.length > 0">
-      <Chart class="chart" :options="chartOptions"/>
+    <div class="chart-wrapper" ref="chartWrapper" >
+      <Chart class="chart" :options="chartOptions" />
     </div>
     <ol v-if="groupedList.length > 0">
       <li v-for="(group,index) in groupedList" :key="index">
@@ -17,7 +17,7 @@
         </ol>
       </li>
     </ol>
-    <div v-else class="noResult">
+    <div class="noResult" v-else>
       <Icon name="notes"/>
       <span>暂时还没有记录，快去记一笔吧~</span>
     </div>
@@ -70,7 +70,7 @@ export default class Statistics extends Vue {
   get keyValueList() {
     const today = new Date();
     const array = [];
-    console.log(this.groupedList);
+    // console.log(this.groupedList);
     for (let i = 0; i <= 29; i++) {
       // this.recordList = [{date:7.3, value:100}, {date:7.2, value:200}]
       const dateString = day(today)
@@ -206,7 +206,7 @@ export default class Statistics extends Vue {
 
 
 .noResult {
-  margin-top: 200px;
+  margin-top: 100px;
   padding: 16px;
   text-align: center;
 

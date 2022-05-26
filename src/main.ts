@@ -7,11 +7,18 @@ import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import Icon from '@/components/Icon.vue';
 
+import { Button, MessageBox, Message } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false;
 Vue.component('Nav', Nav);
 Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
+Vue.use(Button)
+
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$message = Message;
 
 new Vue({
     router,

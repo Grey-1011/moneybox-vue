@@ -8,7 +8,7 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <Button class="createTag" @click="createTag">新建标签</Button>
+      <el-button class="createTag" @click="createTag">新建标签</el-button>
     </div>
   </layout>
 </template>
